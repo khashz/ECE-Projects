@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="RPGtiles" tilewidth="32" tileheight="32">
+  <image source="tileset.png" width="512" height="384"/>
+ </tileset>
+ <tileset firstgid="193" name="Transparency" tilewidth="32" tileheight="32">
+  <image source="meta_tiles.png" width="67" height="34"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="True"/>
+   </properties>
+  </tile>
+ </tileset>
+ <objectgroup name="oj" width="50" height="50">
+  <object name="StartPoint" x="111" y="1489"/>
+ </objectgroup>
+ <layer name="bg" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2TEOgzAMBdAMnSqOwgk4UFX1QJwXdciCUjdOvoNj/vAHBEJ6OHEgbCmljWGY0HkFymfy0OErdPjKHR1vx8mOfHwnh6ZulmOJjj7HAooHx7MzdNBBh3/HqH5Vk1YHOp4di+LaksPqOdGhd+yGDu047XVIFmnPyKOjZKndA0ONPZTjbLHY9yvVzMKRLVb7l1JN0I7d0FGqyYz1GOWwnh+1Dk3PQ/Uri/nR6tD2zt5oHdK9/q3n2jWtNQiH9H4VzaE915oRjvM32cyOR3AH6tv7aodF6JjbUdvffzlGrzEIxzerU0eU/5zInnlFci0Onr9p3A==
+  </data>
+ </layer>
+ <layer name="st" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmEEOgCAMBPn/r/iZJy/GCJTtsuBO0hOx7YRQCaUYY06nHhS7Yw8t7KGFPbSwhxb2iNfKuHuwPbJy2APXAyKHPXA9IHJ4Xmmh5hHtxR452KPtwnxnQXi85WC/G6E8nnlQM7/XGelRG2s7eWQHyyPbkeHR46nu0Vrf4XwoMOuhgj3+58E4SyyPmVojNSLfITxYc/mrN6X9iGIPLUZ6OslD7X9zo9rXKFn38hVxAYvlWhs=
+  </data>
+ </layer>
+</map>

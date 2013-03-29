@@ -1,0 +1,41 @@
+cc -g -Wall -c storage.c -o storage.o
+storage.c: In function ‘storage_get’:
+storage.c:154: warning: passing argument 1 of ‘tablecheck’ discards qualifiers from pointer target type
+storage.c:23: note: expected ‘char *’ but argument is of type ‘const char *’
+storage.c:154: warning: passing argument 1 of ‘keycheck’ discards qualifiers from pointer target type
+storage.c:35: note: expected ‘char *’ but argument is of type ‘const char *’
+storage.c: In function ‘storage_set’:
+storage.c:193: warning: passing argument 1 of ‘tablecheck’ discards qualifiers from pointer target type
+storage.c:23: note: expected ‘char *’ but argument is of type ‘const char *’
+storage.c:193: warning: passing argument 1 of ‘keycheck’ discards qualifiers from pointer target type
+storage.c:35: note: expected ‘char *’ but argument is of type ‘const char *’
+cc -g -Wall -c utils.c -o utils.o
+ar rcs libstorage.a storage.o utils.o
+cc -g -Wall -c server.c -o server.o
+server.c: In function ‘handle_command’:
+server.c:91: warning: comparison between pointer and integer
+server.c:152: warning: unused variable ‘temp’
+server.c:196: warning: unused variable ‘temp’
+server.c: In function ‘main’:
+server.c:229: warning: unused variable ‘ti’
+server.c:228: warning: unused variable ‘temp_time’
+cc -g -Wall -lcrypt server.o utils.o -o server
+cc -g -Wall -c client.c -o client.o
+In file included from client.c:17:
+storage.c: In function ‘storage_get’:
+storage.c:154: warning: passing argument 1 of ‘tablecheck’ discards qualifiers from pointer target type
+storage.c:23: note: expected ‘char *’ but argument is of type ‘const char *’
+storage.c:154: warning: passing argument 1 of ‘keycheck’ discards qualifiers from pointer target type
+storage.c:35: note: expected ‘char *’ but argument is of type ‘const char *’
+storage.c: In function ‘storage_set’:
+storage.c:193: warning: passing argument 1 of ‘tablecheck’ discards qualifiers from pointer target type
+storage.c:23: note: expected ‘char *’ but argument is of type ‘const char *’
+storage.c:193: warning: passing argument 1 of ‘keycheck’ discards qualifiers from pointer target type
+storage.c:35: note: expected ‘char *’ but argument is of type ‘const char *’
+client.c: In function ‘main’:
+client.c:151: warning: unused variable ‘buff’
+cc -g -Wall -lcrypt client.o libstorage.a -o client
+cc -g -Wall -c encrypt_passwd.c -o encrypt_passwd.o
+cc -g -Wall -lcrypt encrypt_passwd.o utils.o -o encrypt_passwd
+make: `server' is up to date.
+make: `libstorage.a' is up to date.

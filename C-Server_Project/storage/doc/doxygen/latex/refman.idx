@@ -1,0 +1,104 @@
+\indexentry{config\_\discretionary {-}{}{}params@{config\_\discretionary {-}{}{}params}|hyperpage}{5}
+\indexentry{head@{head}|hyperpage}{6}
+\indexentry{key@{key}|hyperpage}{6}
+\indexentry{storage\_\discretionary {-}{}{}record@{storage\_\discretionary {-}{}{}record}|hyperpage}{7}
+\indexentry{table@{table}|hyperpage}{7}
+\indexentry{table\_\discretionary {-}{}{}info@{table\_\discretionary {-}{}{}info}|hyperpage}{8}
+\indexentry{temp\_\discretionary {-}{}{}table\_\discretionary {-}{}{}info@{temp\_\discretionary {-}{}{}table\_\discretionary {-}{}{}info}|hyperpage}{8}
+\indexentry{encrypt\_\discretionary {-}{}{}passwd.c@{encrypt\_\discretionary {-}{}{}passwd.c}|hyperpage}{11}
+\indexentry{loghelp.h@{loghelp.h}|hyperpage}{11}
+\indexentry{server.c@{server.c}|hyperpage}{12}
+\indexentry{server.c@{server.c}!check\_\discretionary {-}{}{}key@{check\_\discretionary {-}{}{}key}|hyperpage}{15}
+\indexentry{check\_\discretionary {-}{}{}key@{check\_\discretionary {-}{}{}key}!server.c@{server.c}|hyperpage}{15}
+\indexentry{server.c@{server.c}!compare\_\discretionary {-}{}{}formats@{compare\_\discretionary {-}{}{}formats}|hyperpage}{15}
+\indexentry{compare\_\discretionary {-}{}{}formats@{compare\_\discretionary {-}{}{}formats}!server.c@{server.c}|hyperpage}{15}
+\indexentry{server.c@{server.c}!compare\_\discretionary {-}{}{}query\_\discretionary {-}{}{}format@{compare\_\discretionary {-}{}{}query\_\discretionary {-}{}{}format}|hyperpage}{16}
+\indexentry{compare\_\discretionary {-}{}{}query\_\discretionary {-}{}{}format@{compare\_\discretionary {-}{}{}query\_\discretionary {-}{}{}format}!server.c@{server.c}|hyperpage}{16}
+\indexentry{server.c@{server.c}!create\_\discretionary {-}{}{}key@{create\_\discretionary {-}{}{}key}|hyperpage}{16}
+\indexentry{create\_\discretionary {-}{}{}key@{create\_\discretionary {-}{}{}key}!server.c@{server.c}|hyperpage}{16}
+\indexentry{server.c@{server.c}!create\_\discretionary {-}{}{}table\_\discretionary {-}{}{}bare@{create\_\discretionary {-}{}{}table\_\discretionary {-}{}{}bare}|hyperpage}{17}
+\indexentry{create\_\discretionary {-}{}{}table\_\discretionary {-}{}{}bare@{create\_\discretionary {-}{}{}table\_\discretionary {-}{}{}bare}!server.c@{server.c}|hyperpage}{17}
+\indexentry{server.c@{server.c}!delete\_\discretionary {-}{}{}key@{delete\_\discretionary {-}{}{}key}|hyperpage}{17}
+\indexentry{delete\_\discretionary {-}{}{}key@{delete\_\discretionary {-}{}{}key}!server.c@{server.c}|hyperpage}{17}
+\indexentry{server.c@{server.c}!find\_\discretionary {-}{}{}key@{find\_\discretionary {-}{}{}key}|hyperpage}{17}
+\indexentry{find\_\discretionary {-}{}{}key@{find\_\discretionary {-}{}{}key}!server.c@{server.c}|hyperpage}{17}
+\indexentry{server.c@{server.c}!find\_\discretionary {-}{}{}table@{find\_\discretionary {-}{}{}table}|hyperpage}{18}
+\indexentry{find\_\discretionary {-}{}{}table@{find\_\discretionary {-}{}{}table}!server.c@{server.c}|hyperpage}{18}
+\indexentry{server.c@{server.c}!get\_\discretionary {-}{}{}function@{get\_\discretionary {-}{}{}function}|hyperpage}{18}
+\indexentry{get\_\discretionary {-}{}{}function@{get\_\discretionary {-}{}{}function}!server.c@{server.c}|hyperpage}{18}
+\indexentry{server.c@{server.c}!handle\_\discretionary {-}{}{}command@{handle\_\discretionary {-}{}{}command}|hyperpage}{19}
+\indexentry{handle\_\discretionary {-}{}{}command@{handle\_\discretionary {-}{}{}command}!server.c@{server.c}|hyperpage}{19}
+\indexentry{server.c@{server.c}!input\_\discretionary {-}{}{}parser@{input\_\discretionary {-}{}{}parser}|hyperpage}{19}
+\indexentry{input\_\discretionary {-}{}{}parser@{input\_\discretionary {-}{}{}parser}!server.c@{server.c}|hyperpage}{19}
+\indexentry{server.c@{server.c}!insert\_\discretionary {-}{}{}key@{insert\_\discretionary {-}{}{}key}|hyperpage}{20}
+\indexentry{insert\_\discretionary {-}{}{}key@{insert\_\discretionary {-}{}{}key}!server.c@{server.c}|hyperpage}{20}
+\indexentry{server.c@{server.c}!insert\_\discretionary {-}{}{}table@{insert\_\discretionary {-}{}{}table}|hyperpage}{20}
+\indexentry{insert\_\discretionary {-}{}{}table@{insert\_\discretionary {-}{}{}table}!server.c@{server.c}|hyperpage}{20}
+\indexentry{server.c@{server.c}!main@{main}|hyperpage}{20}
+\indexentry{main@{main}!server.c@{server.c}|hyperpage}{20}
+\indexentry{server.c@{server.c}!query\_\discretionary {-}{}{}parser@{query\_\discretionary {-}{}{}parser}|hyperpage}{21}
+\indexentry{query\_\discretionary {-}{}{}parser@{query\_\discretionary {-}{}{}parser}!server.c@{server.c}|hyperpage}{21}
+\indexentry{server.c@{server.c}!set\_\discretionary {-}{}{}function@{set\_\discretionary {-}{}{}function}|hyperpage}{21}
+\indexentry{set\_\discretionary {-}{}{}function@{set\_\discretionary {-}{}{}function}!server.c@{server.c}|hyperpage}{21}
+\indexentry{server.c@{server.c}!table\_\discretionary {-}{}{}query@{table\_\discretionary {-}{}{}query}|hyperpage}{22}
+\indexentry{table\_\discretionary {-}{}{}query@{table\_\discretionary {-}{}{}query}!server.c@{server.c}|hyperpage}{22}
+\indexentry{storage.c@{storage.c}|hyperpage}{22}
+\indexentry{storage.c@{storage.c}!keycheck@{keycheck}|hyperpage}{24}
+\indexentry{keycheck@{keycheck}!storage.c@{storage.c}|hyperpage}{24}
+\indexentry{storage.c@{storage.c}!storage\_\discretionary {-}{}{}auth@{storage\_\discretionary {-}{}{}auth}|hyperpage}{25}
+\indexentry{storage\_\discretionary {-}{}{}auth@{storage\_\discretionary {-}{}{}auth}!storage.c@{storage.c}|hyperpage}{25}
+\indexentry{storage.c@{storage.c}!storage\_\discretionary {-}{}{}connect@{storage\_\discretionary {-}{}{}connect}|hyperpage}{25}
+\indexentry{storage\_\discretionary {-}{}{}connect@{storage\_\discretionary {-}{}{}connect}!storage.c@{storage.c}|hyperpage}{25}
+\indexentry{storage.c@{storage.c}!storage\_\discretionary {-}{}{}disconnect@{storage\_\discretionary {-}{}{}disconnect}|hyperpage}{25}
+\indexentry{storage\_\discretionary {-}{}{}disconnect@{storage\_\discretionary {-}{}{}disconnect}!storage.c@{storage.c}|hyperpage}{25}
+\indexentry{storage.c@{storage.c}!storage\_\discretionary {-}{}{}get@{storage\_\discretionary {-}{}{}get}|hyperpage}{26}
+\indexentry{storage\_\discretionary {-}{}{}get@{storage\_\discretionary {-}{}{}get}!storage.c@{storage.c}|hyperpage}{26}
+\indexentry{storage.c@{storage.c}!storage\_\discretionary {-}{}{}query@{storage\_\discretionary {-}{}{}query}|hyperpage}{26}
+\indexentry{storage\_\discretionary {-}{}{}query@{storage\_\discretionary {-}{}{}query}!storage.c@{storage.c}|hyperpage}{26}
+\indexentry{storage.c@{storage.c}!storage\_\discretionary {-}{}{}set@{storage\_\discretionary {-}{}{}set}|hyperpage}{27}
+\indexentry{storage\_\discretionary {-}{}{}set@{storage\_\discretionary {-}{}{}set}!storage.c@{storage.c}|hyperpage}{27}
+\indexentry{storage.c@{storage.c}!tablecheck@{tablecheck}|hyperpage}{27}
+\indexentry{tablecheck@{tablecheck}!storage.c@{storage.c}|hyperpage}{27}
+\indexentry{storage.c@{storage.c}!valuecheck@{valuecheck}|hyperpage}{28}
+\indexentry{valuecheck@{valuecheck}!storage.c@{storage.c}|hyperpage}{28}
+\indexentry{storage.h@{storage.h}|hyperpage}{28}
+\indexentry{storage.h@{storage.h}!storage\_\discretionary {-}{}{}auth@{storage\_\discretionary {-}{}{}auth}|hyperpage}{31}
+\indexentry{storage\_\discretionary {-}{}{}auth@{storage\_\discretionary {-}{}{}auth}!storage.h@{storage.h}|hyperpage}{31}
+\indexentry{storage.h@{storage.h}!storage\_\discretionary {-}{}{}connect@{storage\_\discretionary {-}{}{}connect}|hyperpage}{32}
+\indexentry{storage\_\discretionary {-}{}{}connect@{storage\_\discretionary {-}{}{}connect}!storage.h@{storage.h}|hyperpage}{32}
+\indexentry{storage.h@{storage.h}!storage\_\discretionary {-}{}{}disconnect@{storage\_\discretionary {-}{}{}disconnect}|hyperpage}{32}
+\indexentry{storage\_\discretionary {-}{}{}disconnect@{storage\_\discretionary {-}{}{}disconnect}!storage.h@{storage.h}|hyperpage}{32}
+\indexentry{storage.h@{storage.h}!storage\_\discretionary {-}{}{}get@{storage\_\discretionary {-}{}{}get}|hyperpage}{33}
+\indexentry{storage\_\discretionary {-}{}{}get@{storage\_\discretionary {-}{}{}get}!storage.h@{storage.h}|hyperpage}{33}
+\indexentry{storage.h@{storage.h}!storage\_\discretionary {-}{}{}query@{storage\_\discretionary {-}{}{}query}|hyperpage}{34}
+\indexentry{storage\_\discretionary {-}{}{}query@{storage\_\discretionary {-}{}{}query}!storage.h@{storage.h}|hyperpage}{34}
+\indexentry{storage.h@{storage.h}!storage\_\discretionary {-}{}{}set@{storage\_\discretionary {-}{}{}set}|hyperpage}{35}
+\indexentry{storage\_\discretionary {-}{}{}set@{storage\_\discretionary {-}{}{}set}!storage.h@{storage.h}|hyperpage}{35}
+\indexentry{utils.c@{utils.c}|hyperpage}{36}
+\indexentry{utils.c@{utils.c}!generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password@{generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password}|hyperpage}{37}
+\indexentry{generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password@{generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password}!utils.c@{utils.c}|hyperpage}{37}
+\indexentry{utils.c@{utils.c}!logger@{logger}|hyperpage}{37}
+\indexentry{logger@{logger}!utils.c@{utils.c}|hyperpage}{37}
+\indexentry{utils.c@{utils.c}!process\_\discretionary {-}{}{}config\_\discretionary {-}{}{}line@{process\_\discretionary {-}{}{}config\_\discretionary {-}{}{}line}|hyperpage}{37}
+\indexentry{process\_\discretionary {-}{}{}config\_\discretionary {-}{}{}line@{process\_\discretionary {-}{}{}config\_\discretionary {-}{}{}line}!utils.c@{utils.c}|hyperpage}{37}
+\indexentry{utils.c@{utils.c}!read\_\discretionary {-}{}{}config@{read\_\discretionary {-}{}{}config}|hyperpage}{38}
+\indexentry{read\_\discretionary {-}{}{}config@{read\_\discretionary {-}{}{}config}!utils.c@{utils.c}|hyperpage}{38}
+\indexentry{utils.c@{utils.c}!recvline@{recvline}|hyperpage}{38}
+\indexentry{recvline@{recvline}!utils.c@{utils.c}|hyperpage}{38}
+\indexentry{utils.c@{utils.c}!sendall@{sendall}|hyperpage}{39}
+\indexentry{sendall@{sendall}!utils.c@{utils.c}|hyperpage}{39}
+\indexentry{utils.h@{utils.h}|hyperpage}{39}
+\indexentry{utils.h@{utils.h}!DBG@{DBG}|hyperpage}{41}
+\indexentry{DBG@{DBG}!utils.h@{utils.h}|hyperpage}{41}
+\indexentry{utils.h@{utils.h}!LOG@{LOG}|hyperpage}{41}
+\indexentry{LOG@{LOG}!utils.h@{utils.h}|hyperpage}{41}
+\indexentry{utils.h@{utils.h}!generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password@{generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password}|hyperpage}{41}
+\indexentry{generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password@{generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password}!utils.h@{utils.h}|hyperpage}{41}
+\indexentry{utils.h@{utils.h}!logger@{logger}|hyperpage}{41}
+\indexentry{logger@{logger}!utils.h@{utils.h}|hyperpage}{41}
+\indexentry{utils.h@{utils.h}!read\_\discretionary {-}{}{}config@{read\_\discretionary {-}{}{}config}|hyperpage}{42}
+\indexentry{read\_\discretionary {-}{}{}config@{read\_\discretionary {-}{}{}config}!utils.h@{utils.h}|hyperpage}{42}
+\indexentry{utils.h@{utils.h}!recvline@{recvline}|hyperpage}{42}
+\indexentry{recvline@{recvline}!utils.h@{utils.h}|hyperpage}{42}
+\indexentry{utils.h@{utils.h}!sendall@{sendall}|hyperpage}{43}
+\indexentry{sendall@{sendall}!utils.h@{utils.h}|hyperpage}{43}

@@ -1,0 +1,639 @@
+\hypertarget{server_8c}{
+\section{server.c File Reference}
+\label{server_8c}\index{server.c@{server.c}}
+}
+
+
+This file implements the storage server.  
+
+
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$unistd.h$>$}\par
+{\ttfamily \#include $<$sys/types.h$>$}\par
+{\ttfamily \#include $<$sys/socket.h$>$}\par
+{\ttfamily \#include $<$arpa/inet.h$>$}\par
+{\ttfamily \#include $<$netdb.h$>$}\par
+{\ttfamily \#include $<$string.h$>$}\par
+{\ttfamily \#include $<$assert.h$>$}\par
+{\ttfamily \#include $<$signal.h$>$}\par
+{\ttfamily \#include \char`\"{}utils.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}loghelp.h\char`\"{}}\par
+{\ttfamily \#include $<$errno.h$>$}\par
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtable}{table}
+\begin{DoxyCompactList}\small\item\em A struct a linked list to store the table's configuration paramaters. \item\end{DoxyCompactList}\item 
+struct \hyperlink{structtemp__table__info}{temp\_\-table\_\-info}
+\begin{DoxyCompactList}\small\item\em A struct to store EACH table's paramters. \item\end{DoxyCompactList}\item 
+struct \hyperlink{structkey}{key}
+\begin{DoxyCompactList}\small\item\em Simply stores the next key in the list and the value (each key is a struct). \item\end{DoxyCompactList}\item 
+struct \hyperlink{structhead}{head}
+\begin{DoxyCompactList}\small\item\em A header for our database. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{server_8c_a299a0fee5caf081ea9aa2893055d2846}{
+\#define {\bfseries MAX\_\-SIZE\_\-LENGTH}~800}
+\label{server_8c_a299a0fee5caf081ea9aa2893055d2846}
+
+\item 
+\hypertarget{server_8c_a36b090ddf192f97d9fecf8ff5a98996e}{
+\#define \hyperlink{server_8c_a36b090ddf192f97d9fecf8ff5a98996e}{MAX\_\-LISTENQUEUELEN}~20}
+\label{server_8c_a36b090ddf192f97d9fecf8ff5a98996e}
+
+\begin{DoxyCompactList}\small\item\em The maximum number of queued connections. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtable}{table} $\ast$ \hyperlink{server_8c_a4317ad3e31513ec9dc87568ad6076357}{create\_\-table\_\-bare} (char $\ast$name\_\-table, struct \hyperlink{structtable__info}{table\_\-info} $\ast$temp)
+\begin{DoxyCompactList}\small\item\em A function that dynamically creates a bare table given its name and table configurations. \item\end{DoxyCompactList}\item 
+struct \hyperlink{structtable}{table} $\ast$ \hyperlink{server_8c_ab69fa560e07050056e5d414d0319a333}{find\_\-table} (char $\ast$name, struct \hyperlink{structhead}{head} $\ast$\hyperlink{structhead}{head})
+\begin{DoxyCompactList}\small\item\em a function to find the table stored inside of our database \item\end{DoxyCompactList}\item 
+struct \hyperlink{structkey}{key} $\ast$ \hyperlink{server_8c_a92da497d3ae8d68d2c658cf17cfba669}{find\_\-key} (char $\ast$name, struct \hyperlink{structtable}{table} $\ast$\hyperlink{structtable}{table})
+\begin{DoxyCompactList}\small\item\em function to find the key stored inside of our database \item\end{DoxyCompactList}\item 
+\hypertarget{server_8c_aedd4350fbec84278fe0c8762a894656f}{
+struct \hyperlink{structtable}{table} $\ast$ {\bfseries create\_\-table} (char $\ast$name\_\-table, char $\ast$name\_\-key, char $\ast$value)}
+\label{server_8c_aedd4350fbec84278fe0c8762a894656f}
+
+\item 
+struct \hyperlink{structkey}{key} $\ast$ \hyperlink{server_8c_af373ef3f90dae112e95a1bd54bcd68e0}{create\_\-key} (char $\ast$name\_\-key, char $\ast$value, struct \hyperlink{structtemp__table__info}{temp\_\-table\_\-info} $\ast$temp)
+\begin{DoxyCompactList}\small\item\em A function that dynamically creates a key given its key name, value. \item\end{DoxyCompactList}\item 
+void \hyperlink{server_8c_a0e90bd3341237dc35783f24455332d0d}{insert\_\-table} (struct \hyperlink{structtable}{table} $\ast$new\_\-table, struct \hyperlink{structhead}{head} $\ast$\hyperlink{structhead}{head})
+\begin{DoxyCompactList}\small\item\em a function that inserts a table (new\_\-table) inside of our database. Also inserts it into our structs \item\end{DoxyCompactList}\item 
+void \hyperlink{server_8c_adf3e22877d9469477ea79cc2636a6681}{insert\_\-key} (struct \hyperlink{structkey}{key} $\ast$new\_\-key, struct \hyperlink{structtable}{table} $\ast$\hyperlink{structtable}{table})
+\begin{DoxyCompactList}\small\item\em a function that inserts a key (new\_\-key) inside of our database. Also inserts it into our structs \item\end{DoxyCompactList}\item 
+\hypertarget{server_8c_a82b3262a5b6c238660fecf9639926f00}{
+void {\bfseries delete\_\-table} (struct \hyperlink{structtable}{table} $\ast$target\_\-table, struct \hyperlink{structtable}{table} $\ast$\hyperlink{structtable}{table})}
+\label{server_8c_a82b3262a5b6c238660fecf9639926f00}
+
+\item 
+void \hyperlink{server_8c_a0a41677fd4a6a24904ecc2c1cd35e8de}{delete\_\-key} (struct \hyperlink{structkey}{key} $\ast$target\_\-key, struct \hyperlink{structtable}{table} $\ast$\hyperlink{structtable}{table})
+\begin{DoxyCompactList}\small\item\em function that deletes the key from the linked list and sets the next/back value of respective keys in the list \item\end{DoxyCompactList}\item 
+int \hyperlink{server_8c_a898b393577689d52466851cde228dd68}{set\_\-function} (char $\ast$table\_\-name, char $\ast$key\_\-name,char $\ast$value, struct \hyperlink{structhead}{head} $\ast$\hyperlink{structhead}{head}, struct \hyperlink{structtemp__table__info}{temp\_\-table\_\-info} $\ast$temp)
+\begin{DoxyCompactList}\small\item\em a function that sets the value of a key based on the value sent. Function is called from handle\_\-command \item\end{DoxyCompactList}\item 
+int \hyperlink{server_8c_a3915701f4fbc36c0bf379a4a727c08c4}{get\_\-function} (char $\ast$table\_\-name, char $\ast$key\_\-name, char $\ast$value, struct \hyperlink{structhead}{head} $\ast$\hyperlink{structhead}{head})
+\begin{DoxyCompactList}\small\item\em a function to get (retreive a value) from our database. Function is called from handle\_\-command \item\end{DoxyCompactList}\item 
+int \hyperlink{server_8c_a384f4e65d1f833a831812e14e2b4933b}{compare\_\-formats} (struct \hyperlink{structtemp__table__info}{temp\_\-table\_\-info} $\ast$temp\_\-info, struct \hyperlink{structtable}{table} $\ast$target\_\-table)
+\begin{DoxyCompactList}\small\item\em PARSING///. \item\end{DoxyCompactList}\item 
+int \hyperlink{server_8c_a0daff952695c2574607788aef2523f12}{query\_\-parser} (char $\ast$line, struct \hyperlink{structtemp__table__info}{temp\_\-table\_\-info} $\ast$temp\_\-info)
+\begin{DoxyCompactList}\small\item\em a function that parses the query predicates. Function called from handle command \item\end{DoxyCompactList}\item 
+int \hyperlink{server_8c_a640cfbcd378b423928975ed2139b36f0}{input\_\-parser} (char $\ast$line, struct \hyperlink{structtemp__table__info}{temp\_\-table\_\-info} $\ast$temp\_\-info)
+\begin{DoxyCompactList}\small\item\em parses the user's input for a set command and saves it's format in temp\_\-info \item\end{DoxyCompactList}\item 
+int \hyperlink{server_8c_ad375ae8a63d39515d46274ea648a6870}{compare\_\-query\_\-format} (struct \hyperlink{structtemp__table__info}{temp\_\-table\_\-info} $\ast$temp\_\-info, struct \hyperlink{structtable}{table} $\ast$target\_\-table)
+\begin{DoxyCompactList}\small\item\em function that compares if the format of the input (for storage\_\-query) matches the columns/types of the table's format \item\end{DoxyCompactList}\item 
+struct \hyperlink{structkey}{key} $\ast$ \hyperlink{server_8c_ab15adf456c1e9f4bf4c23e176a7fe6aa}{check\_\-key} (struct \hyperlink{structkey}{key} $\ast$target\_\-key, int index\_\-col, char $\ast$operators, char $\ast$type, char $\ast$value)
+\begin{DoxyCompactList}\small\item\em a function that checks if the key's value satisfies the condition outlined by the operator \item\end{DoxyCompactList}\item 
+\hypertarget{server_8c_a3bcbea3662833fd6964608845b836958}{
+int {\bfseries table\_\-query} (struct \hyperlink{structtable}{table} $\ast$target\_\-table, struct \hyperlink{structtemp__table__info}{temp\_\-table\_\-info} $\ast$col\_\-info, struct \hyperlink{structkey}{key} $\ast$key\_\-array\mbox{[}50\mbox{]})}
+\label{server_8c_a3bcbea3662833fd6964608845b836958}
+
+\item 
+int \hyperlink{server_8c_a2c9007ff1f3225a87ebd7723764dd350}{handle\_\-command} (int sock, char $\ast$cmd, FILE $\ast$$\ast$log, struct \hyperlink{structconfig__params}{config\_\-params} $\ast$params, struct \hyperlink{structhead}{head} $\ast$\hyperlink{structhead}{head})
+\begin{DoxyCompactList}\small\item\em Handle command takes in a sentence from the client and performs accordingly. \item\end{DoxyCompactList}\item 
+int \hyperlink{server_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Start the storage server. \item\end{DoxyCompactList}\item 
+int \hyperlink{server_8c_a0515605428d1e5c85dc60d3ebb20b3c1}{table\_\-query} (struct \hyperlink{structtable}{table} $\ast$target\_\-table, struct \hyperlink{structtemp__table__info}{temp\_\-table\_\-info} $\ast$col\_\-info, struct \hyperlink{structkey}{key} $\ast$key\_\-array\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em takes a set of conditions (col\_\-info) and finds all the keys in the supplied table that match all the conditions \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{server_8c_a5ce736b5d74d8a2a656fee96d7bd0735}{
+int {\bfseries didAuthenticate}}
+\label{server_8c_a5ce736b5d74d8a2a656fee96d7bd0735}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file implements the storage server. The storage server should be named \char`\"{}server\char`\"{} and should take a single command line argument that refers to the configuration file.
+
+The storage server should be able to communicate with the client library functions declared in \hyperlink{storage_8h}{storage.h} and implemented in \hyperlink{storage_8c}{storage.c}.
+
+At the bottom of the server file, we have implemented all of the functions needed for our database, along with the query function 
+
+Definition in file \hyperlink{server_8c_source}{server.c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{server_8c_ab15adf456c1e9f4bf4c23e176a7fe6aa}{
+\index{server.c@{server.c}!check\_\-key@{check\_\-key}}
+\index{check\_\-key@{check\_\-key}!server.c@{server.c}}
+\subsubsection[{check\_\-key}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf key} $\ast$ check\_\-key (
+\begin{DoxyParamCaption}
+\item[{struct {\bf key} $\ast$}]{ target\_\-key, }
+\item[{int}]{ index\_\-col, }
+\item[{char $\ast$}]{ operators, }
+\item[{char $\ast$}]{ type, }
+\item[{char $\ast$}]{ value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}read\mbox{]}}}}
+\label{server_8c_ab15adf456c1e9f4bf4c23e176a7fe6aa}
+
+
+a function that checks if the key's value satisfies the condition outlined by the operator 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em target\_\-key}]is the key checked \item[{\em index\_\-col}]holds the correct index for the key's column/value to match the provided value's type \item[{\em operators}]condition to be checked \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns the key struct if valid, null if not 
+\end{DoxyReturn}
+
+
+Definition at line 1217 of file server.c.
+
+
+
+Referenced by table\_\-query().
+
+\hypertarget{server_8c_a384f4e65d1f833a831812e14e2b4933b}{
+\index{server.c@{server.c}!compare\_\-formats@{compare\_\-formats}}
+\index{compare\_\-formats@{compare\_\-formats}!server.c@{server.c}}
+\subsubsection[{compare\_\-formats}]{\setlength{\rightskip}{0pt plus 5cm}int compare\_\-formats (
+\begin{DoxyParamCaption}
+\item[{struct {\bf temp\_\-table\_\-info} $\ast$}]{ temp\_\-info, }
+\item[{struct {\bf table} $\ast$}]{ target\_\-table}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a384f4e65d1f833a831812e14e2b4933b}
+
+
+PARSING///. 
+
+function that compares the formats of the user's input with the expected format in the table (used for storage\_\-set)
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em temp\_\-info}]contains the format of the columns/types/values of the user input \item[{\em target\_\-table}]contains the format of the table, this is compared with the temp provided in temp\_\-info \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns -\/1 for failure, and 0 for success 
+\end{DoxyReturn}
+
+
+Definition at line 1008 of file server.c.
+
+
+
+Referenced by set\_\-function().
+
+\hypertarget{server_8c_ad375ae8a63d39515d46274ea648a6870}{
+\index{server.c@{server.c}!compare\_\-query\_\-format@{compare\_\-query\_\-format}}
+\index{compare\_\-query\_\-format@{compare\_\-query\_\-format}!server.c@{server.c}}
+\subsubsection[{compare\_\-query\_\-format}]{\setlength{\rightskip}{0pt plus 5cm}int compare\_\-query\_\-format (
+\begin{DoxyParamCaption}
+\item[{struct {\bf temp\_\-table\_\-info} $\ast$}]{ temp\_\-info, }
+\item[{struct {\bf table} $\ast$}]{ target\_\-table}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_ad375ae8a63d39515d46274ea648a6870}
+
+
+function that compares if the format of the input (for storage\_\-query) matches the columns/types of the table's format 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em temp\_\-info}]a pointer to a struct that contains the format of the input sent \item[{\em target\_\-table}]contains the format of the table, this is compared with the temp provided in temp\_\-info \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns -\/1 for failure, and 0 for success 
+\end{DoxyReturn}
+
+
+Definition at line 964 of file server.c.
+
+
+
+Referenced by handle\_\-command().
+
+\hypertarget{server_8c_af373ef3f90dae112e95a1bd54bcd68e0}{
+\index{server.c@{server.c}!create\_\-key@{create\_\-key}}
+\index{create\_\-key@{create\_\-key}!server.c@{server.c}}
+\subsubsection[{create\_\-key}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf key} $\ast$ create\_\-key (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ name\_\-key, }
+\item[{char $\ast$}]{ value, }
+\item[{struct {\bf temp\_\-table\_\-info} $\ast$}]{ temp}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}read\mbox{]}}}}
+\label{server_8c_af373ef3f90dae112e95a1bd54bcd68e0}
+
+
+A function that dynamically creates a key given its key name, value. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name\_\-key}]name of the key \item[{\em value}]value to place inside the key \item[{\em temp}]struct of the table info \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+struct to the key created 
+\end{DoxyReturn}
+
+
+Definition at line 691 of file server.c.
+
+
+
+Referenced by set\_\-function().
+
+\hypertarget{server_8c_a4317ad3e31513ec9dc87568ad6076357}{
+\index{server.c@{server.c}!create\_\-table\_\-bare@{create\_\-table\_\-bare}}
+\index{create\_\-table\_\-bare@{create\_\-table\_\-bare}!server.c@{server.c}}
+\subsubsection[{create\_\-table\_\-bare}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf table} $\ast$ create\_\-table\_\-bare (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ name\_\-table, }
+\item[{struct {\bf table\_\-info} $\ast$}]{ temp}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}read\mbox{]}}}}
+\label{server_8c_a4317ad3e31513ec9dc87568ad6076357}
+
+
+A function that dynamically creates a bare table given its name and table configurations. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name\_\-table}]name of the table \item[{\em \hyperlink{structtable__info}{table\_\-info}}]information for each table inside the config file \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+struct to the table created 
+\end{DoxyReturn}
+
+
+Definition at line 657 of file server.c.
+
+
+
+Referenced by main().
+
+\hypertarget{server_8c_a0a41677fd4a6a24904ecc2c1cd35e8de}{
+\index{server.c@{server.c}!delete\_\-key@{delete\_\-key}}
+\index{delete\_\-key@{delete\_\-key}!server.c@{server.c}}
+\subsubsection[{delete\_\-key}]{\setlength{\rightskip}{0pt plus 5cm}void delete\_\-key (
+\begin{DoxyParamCaption}
+\item[{struct {\bf key} $\ast$}]{ target\_\-key, }
+\item[{struct {\bf table} $\ast$}]{ table}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a0a41677fd4a6a24904ecc2c1cd35e8de}
+
+
+function that deletes the key from the linked list and sets the next/back value of respective keys in the list 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em target\_\-key}]is the key to be deleted \item[{\em table}]is the table the key is contained in \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+Definition at line 818 of file server.c.
+
+
+
+Referenced by set\_\-function().
+
+\hypertarget{server_8c_a92da497d3ae8d68d2c658cf17cfba669}{
+\index{server.c@{server.c}!find\_\-key@{find\_\-key}}
+\index{find\_\-key@{find\_\-key}!server.c@{server.c}}
+\subsubsection[{find\_\-key}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf key} $\ast$ find\_\-key (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ name, }
+\item[{struct {\bf table} $\ast$}]{ table}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}read\mbox{]}}}}
+\label{server_8c_a92da497d3ae8d68d2c658cf17cfba669}
+
+
+function to find the key stored inside of our database 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]of the table \item[{\em head}]structure of the head to the database \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+struct of the table if found, or null if not found 
+\end{DoxyReturn}
+
+
+Definition at line 609 of file server.c.
+
+
+
+Referenced by get\_\-function(), and set\_\-function().
+
+\hypertarget{server_8c_ab69fa560e07050056e5d414d0319a333}{
+\index{server.c@{server.c}!find\_\-table@{find\_\-table}}
+\index{find\_\-table@{find\_\-table}!server.c@{server.c}}
+\subsubsection[{find\_\-table}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf table} $\ast$ find\_\-table (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ name, }
+\item[{struct {\bf head} $\ast$}]{ head}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}read\mbox{]}}}}
+\label{server_8c_ab69fa560e07050056e5d414d0319a333}
+
+
+a function to find the table stored inside of our database 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]of the table \item[{\em head}]structure of the head to the database \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+struct of the table if found, or null if not found 
+\end{DoxyReturn}
+
+
+Definition at line 588 of file server.c.
+
+
+
+Referenced by get\_\-function(), handle\_\-command(), and set\_\-function().
+
+\hypertarget{server_8c_a3915701f4fbc36c0bf379a4a727c08c4}{
+\index{server.c@{server.c}!get\_\-function@{get\_\-function}}
+\index{get\_\-function@{get\_\-function}!server.c@{server.c}}
+\subsubsection[{get\_\-function}]{\setlength{\rightskip}{0pt plus 5cm}int get\_\-function (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ table\_\-name, }
+\item[{char $\ast$}]{ key\_\-name, }
+\item[{char $\ast$}]{ value, }
+\item[{struct {\bf head} $\ast$}]{ head}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a3915701f4fbc36c0bf379a4a727c08c4}
+
+
+a function to get (retreive a value) from our database. Function is called from handle\_\-command 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em table\_\-name}]name of the table we must get from \item[{\em key\_\-name}]name of the key to retreive from \item[{\em value}]returns the value inside \item[{\em head}]header to the database \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for success, 1 for key not found, 2 table not found 
+\end{DoxyReturn}
+
+
+Definition at line 927 of file server.c.
+
+
+
+References find\_\-key(), and find\_\-table().
+
+
+
+Referenced by handle\_\-command().
+
+\hypertarget{server_8c_a2c9007ff1f3225a87ebd7723764dd350}{
+\index{server.c@{server.c}!handle\_\-command@{handle\_\-command}}
+\index{handle\_\-command@{handle\_\-command}!server.c@{server.c}}
+\subsubsection[{handle\_\-command}]{\setlength{\rightskip}{0pt plus 5cm}int handle\_\-command (
+\begin{DoxyParamCaption}
+\item[{int}]{ sock, }
+\item[{char $\ast$}]{ cmd, }
+\item[{FILE $\ast$$\ast$}]{ log, }
+\item[{struct {\bf config\_\-params} $\ast$}]{ params, }
+\item[{struct {\bf head} $\ast$}]{ head}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a2c9007ff1f3225a87ebd7723764dd350}
+
+
+Handle command takes in a sentence from the client and performs accordingly. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em sock}]The socket connected to the client. \item[{\em cmd}]The command received from the client. \item[{\em log}]a pointer to the pointer of the declaration of the file to log \item[{\em params}]a pointer to the struct holding the properties inside the config file \item[{\em head}]a pointer to the head of our database \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 on success, -\/1 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 124 of file server.c.
+
+
+
+References compare\_\-query\_\-format(), find\_\-table(), get\_\-function(), input\_\-parser(), logger(), MAX\_\-VALUE\_\-LEN, config\_\-params::password, query\_\-parser(), sendall(), set\_\-function(), table\_\-query(), and config\_\-params::username.
+
+
+
+Referenced by main().
+
+\hypertarget{server_8c_a640cfbcd378b423928975ed2139b36f0}{
+\index{server.c@{server.c}!input\_\-parser@{input\_\-parser}}
+\index{input\_\-parser@{input\_\-parser}!server.c@{server.c}}
+\subsubsection[{input\_\-parser}]{\setlength{\rightskip}{0pt plus 5cm}int input\_\-parser (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ line, }
+\item[{struct {\bf temp\_\-table\_\-info} $\ast$}]{ temp\_\-info}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a640cfbcd378b423928975ed2139b36f0}
+
+
+parses the user's input for a set command and saves it's format in temp\_\-info 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em line}]to parse \item[{\em temp\_\-info}]contains the saved info and format \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns -\/1 for failure, and 0 for success 
+\end{DoxyReturn}
+
+
+Definition at line 1155 of file server.c.
+
+
+
+Referenced by handle\_\-command().
+
+\hypertarget{server_8c_adf3e22877d9469477ea79cc2636a6681}{
+\index{server.c@{server.c}!insert\_\-key@{insert\_\-key}}
+\index{insert\_\-key@{insert\_\-key}!server.c@{server.c}}
+\subsubsection[{insert\_\-key}]{\setlength{\rightskip}{0pt plus 5cm}void insert\_\-key (
+\begin{DoxyParamCaption}
+\item[{struct {\bf key} $\ast$}]{ new\_\-key, }
+\item[{struct {\bf table} $\ast$}]{ table}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_adf3e22877d9469477ea79cc2636a6681}
+
+
+a function that inserts a key (new\_\-key) inside of our database. Also inserts it into our structs 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em new\_\-key}]a struct to the new key \item[{\em table}]a struct to the table \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+Definition at line 750 of file server.c.
+
+
+
+Referenced by set\_\-function().
+
+\hypertarget{server_8c_a0e90bd3341237dc35783f24455332d0d}{
+\index{server.c@{server.c}!insert\_\-table@{insert\_\-table}}
+\index{insert\_\-table@{insert\_\-table}!server.c@{server.c}}
+\subsubsection[{insert\_\-table}]{\setlength{\rightskip}{0pt plus 5cm}void insert\_\-table (
+\begin{DoxyParamCaption}
+\item[{struct {\bf table} $\ast$}]{ new\_\-table, }
+\item[{struct {\bf head} $\ast$}]{ head}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a0e90bd3341237dc35783f24455332d0d}
+
+
+a function that inserts a table (new\_\-table) inside of our database. Also inserts it into our structs 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em new\_\-table}]a struct pointing to the table \item[{\em head}]a struct pointing to the head of our database \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+Definition at line 719 of file server.c.
+
+
+
+Referenced by main().
+
+\hypertarget{server_8c_a0ddf1224851353fc92bfbff6f499fa97}{
+\index{server.c@{server.c}!main@{main}}
+\index{main@{main}!server.c@{server.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{ argc, }
+\item[{char $\ast$}]{ argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+Start the storage server. 
+
+
+\begin{DoxyItemize}
+\item starts the connection and ports
+\end{DoxyItemize}
+
+
+\begin{DoxyItemize}
+\item it opens the file to log, processes the time output
+\item creates the tables and keys for the database
+\item processes the config file
+\item calls handle command \begin{DoxyReturn}{Returns}
+returns 0 for success, -\/1 for failure 
+\end{DoxyReturn}
+
+\end{DoxyItemize}
+
+Definition at line 406 of file server.c.
+
+
+
+References create\_\-table\_\-bare(), handle\_\-command(), insert\_\-table(), logger(), MAX\_\-CMD\_\-LEN, MAX\_\-LISTENQUEUELEN, read\_\-config(), recvline(), config\_\-params::server\_\-host, and config\_\-params::server\_\-port.
+
+\hypertarget{server_8c_a0daff952695c2574607788aef2523f12}{
+\index{server.c@{server.c}!query\_\-parser@{query\_\-parser}}
+\index{query\_\-parser@{query\_\-parser}!server.c@{server.c}}
+\subsubsection[{query\_\-parser}]{\setlength{\rightskip}{0pt plus 5cm}int query\_\-parser (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ line, }
+\item[{struct {\bf temp\_\-table\_\-info} $\ast$}]{ temp\_\-info}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a0daff952695c2574607788aef2523f12}
+
+
+a function that parses the query predicates. Function called from handle command 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em line}]to parse \item[{\em temp\_\-info}]stores the parsed information and format \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns -\/1 for failure, and 0 for success 
+\end{DoxyReturn}
+
+
+Definition at line 1053 of file server.c.
+
+
+
+Referenced by handle\_\-command().
+
+\hypertarget{server_8c_a898b393577689d52466851cde228dd68}{
+\index{server.c@{server.c}!set\_\-function@{set\_\-function}}
+\index{set\_\-function@{set\_\-function}!server.c@{server.c}}
+\subsubsection[{set\_\-function}]{\setlength{\rightskip}{0pt plus 5cm}int set\_\-function (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ table\_\-name, }
+\item[{char $\ast$}]{ key\_\-name, }
+\item[{char $\ast$}]{ value, }
+\item[{struct {\bf head} $\ast$}]{ head, }
+\item[{struct {\bf temp\_\-table\_\-info} $\ast$}]{ temp}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a898b393577689d52466851cde228dd68}
+
+
+a function that sets the value of a key based on the value sent. Function is called from handle\_\-command 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em table\_\-name}]name of the table we must set into \item[{\em key\_\-name}]name of the key to input \item[{\em value}]value to be set \item[{\em head}]header to the database (head of table chain) \item[{\em temp}]a struct that contains the format of the input, used to check if the format matches the table's format \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for success, 1 for key not found, 2 table not found, 3 unknown, 4 invalid format of input (types do no match columns) 
+\end{DoxyReturn}
+
+
+Definition at line 860 of file server.c.
+
+
+
+References compare\_\-formats(), create\_\-key(), delete\_\-key(), find\_\-key(), find\_\-table(), insert\_\-key(), and MAX\_\-RECORDS\_\-PER\_\-TABLE.
+
+
+
+Referenced by handle\_\-command().
+
+\hypertarget{server_8c_a0515605428d1e5c85dc60d3ebb20b3c1}{
+\index{server.c@{server.c}!table\_\-query@{table\_\-query}}
+\index{table\_\-query@{table\_\-query}!server.c@{server.c}}
+\subsubsection[{table\_\-query}]{\setlength{\rightskip}{0pt plus 5cm}int table\_\-query (
+\begin{DoxyParamCaption}
+\item[{struct {\bf table} $\ast$}]{ target\_\-table, }
+\item[{struct {\bf temp\_\-table\_\-info} $\ast$}]{ col\_\-info, }
+\item[{struct {\bf key} $\ast$}]{ key\_\-array\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{server_8c_a0515605428d1e5c85dc60d3ebb20b3c1}
+
+
+takes a set of conditions (col\_\-info) and finds all the keys in the supplied table that match all the conditions 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em target\_\-table}]a struct to the configuartion of that particular table \item[{\em col\_\-info}]holds the parsed conditions (from query\_\-parser) \item[{\em key\_\-array}]holds the keys that satisfy all the conditions \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns -\/1 for failure, and 0 for success 
+\end{DoxyReturn}
+
+
+filled Arr\_\-Keys with the keys that satisfied at least one of the conditions now checking which keys match all conditions 
+
+
+
+Definition at line 1250 of file server.c.
+
+
+
+References check\_\-key().
+
+
+
+Referenced by handle\_\-command().
+

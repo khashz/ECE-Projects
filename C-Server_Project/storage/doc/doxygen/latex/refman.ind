@@ -1,0 +1,198 @@
+\begin{theindex}
+
+  \item {check\_\discretionary {-}{}{}key}
+    \subitem {server.c}, \hyperpage{15}
+  \item {compare\_\discretionary {-}{}{}formats}
+    \subitem {server.c}, \hyperpage{15}
+  \item {compare\_\discretionary {-}{}{}query\_\discretionary {-}{}{}format}
+    \subitem {server.c}, \hyperpage{16}
+  \item {config\_\discretionary {-}{}{}params}, \hyperpage{5}
+  \item {create\_\discretionary {-}{}{}key}
+    \subitem {server.c}, \hyperpage{16}
+  \item {create\_\discretionary {-}{}{}table\_\discretionary {-}{}{}bare}
+    \subitem {server.c}, \hyperpage{17}
+
+  \indexspace
+
+  \item {DBG}
+    \subitem {utils.h}, \hyperpage{41}
+  \item {delete\_\discretionary {-}{}{}key}
+    \subitem {server.c}, \hyperpage{17}
+
+  \indexspace
+
+  \item {encrypt\_\discretionary {-}{}{}passwd.c}, \hyperpage{11}
+
+  \indexspace
+
+  \item {find\_\discretionary {-}{}{}key}
+    \subitem {server.c}, \hyperpage{17}
+  \item {find\_\discretionary {-}{}{}table}
+    \subitem {server.c}, \hyperpage{18}
+
+  \indexspace
+
+  \item {generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password}
+    \subitem {utils.c}, \hyperpage{37}
+    \subitem {utils.h}, \hyperpage{41}
+  \item {get\_\discretionary {-}{}{}function}
+    \subitem {server.c}, \hyperpage{18}
+
+  \indexspace
+
+  \item {handle\_\discretionary {-}{}{}command}
+    \subitem {server.c}, \hyperpage{19}
+  \item {head}, \hyperpage{6}
+
+  \indexspace
+
+  \item {input\_\discretionary {-}{}{}parser}
+    \subitem {server.c}, \hyperpage{19}
+  \item {insert\_\discretionary {-}{}{}key}
+    \subitem {server.c}, \hyperpage{20}
+  \item {insert\_\discretionary {-}{}{}table}
+    \subitem {server.c}, \hyperpage{20}
+
+  \indexspace
+
+  \item {key}, \hyperpage{6}
+  \item {keycheck}
+    \subitem {storage.c}, \hyperpage{24}
+
+  \indexspace
+
+  \item {LOG}
+    \subitem {utils.h}, \hyperpage{41}
+  \item {logger}
+    \subitem {utils.c}, \hyperpage{37}
+    \subitem {utils.h}, \hyperpage{41}
+  \item {loghelp.h}, \hyperpage{11}
+
+  \indexspace
+
+  \item {main}
+    \subitem {server.c}, \hyperpage{20}
+
+  \indexspace
+
+  \item {process\_\discretionary {-}{}{}config\_\discretionary {-}{}{}line}
+    \subitem {utils.c}, \hyperpage{37}
+
+  \indexspace
+
+  \item {query\_\discretionary {-}{}{}parser}
+    \subitem {server.c}, \hyperpage{21}
+
+  \indexspace
+
+  \item {read\_\discretionary {-}{}{}config}
+    \subitem {utils.c}, \hyperpage{38}
+    \subitem {utils.h}, \hyperpage{42}
+  \item {recvline}
+    \subitem {utils.c}, \hyperpage{38}
+    \subitem {utils.h}, \hyperpage{42}
+
+  \indexspace
+
+  \item {sendall}
+    \subitem {utils.c}, \hyperpage{39}
+    \subitem {utils.h}, \hyperpage{43}
+  \item {server.c}, \hyperpage{12}
+    \subitem {check\_\discretionary {-}{}{}key}, \hyperpage{15}
+    \subitem {compare\_\discretionary {-}{}{}formats}, \hyperpage{15}
+    \subitem {compare\_\discretionary {-}{}{}query\_\discretionary {-}{}{}format}, 
+		\hyperpage{16}
+    \subitem {create\_\discretionary {-}{}{}key}, \hyperpage{16}
+    \subitem {create\_\discretionary {-}{}{}table\_\discretionary {-}{}{}bare}, 
+		\hyperpage{17}
+    \subitem {delete\_\discretionary {-}{}{}key}, \hyperpage{17}
+    \subitem {find\_\discretionary {-}{}{}key}, \hyperpage{17}
+    \subitem {find\_\discretionary {-}{}{}table}, \hyperpage{18}
+    \subitem {get\_\discretionary {-}{}{}function}, \hyperpage{18}
+    \subitem {handle\_\discretionary {-}{}{}command}, \hyperpage{19}
+    \subitem {input\_\discretionary {-}{}{}parser}, \hyperpage{19}
+    \subitem {insert\_\discretionary {-}{}{}key}, \hyperpage{20}
+    \subitem {insert\_\discretionary {-}{}{}table}, \hyperpage{20}
+    \subitem {main}, \hyperpage{20}
+    \subitem {query\_\discretionary {-}{}{}parser}, \hyperpage{21}
+    \subitem {set\_\discretionary {-}{}{}function}, \hyperpage{21}
+    \subitem {table\_\discretionary {-}{}{}query}, \hyperpage{22}
+  \item {set\_\discretionary {-}{}{}function}
+    \subitem {server.c}, \hyperpage{21}
+  \item {storage.c}, \hyperpage{22}
+    \subitem {keycheck}, \hyperpage{24}
+    \subitem {storage\_\discretionary {-}{}{}auth}, \hyperpage{25}
+    \subitem {storage\_\discretionary {-}{}{}connect}, \hyperpage{25}
+    \subitem {storage\_\discretionary {-}{}{}disconnect}, 
+		\hyperpage{25}
+    \subitem {storage\_\discretionary {-}{}{}get}, \hyperpage{26}
+    \subitem {storage\_\discretionary {-}{}{}query}, \hyperpage{26}
+    \subitem {storage\_\discretionary {-}{}{}set}, \hyperpage{27}
+    \subitem {tablecheck}, \hyperpage{27}
+    \subitem {valuecheck}, \hyperpage{28}
+  \item {storage.h}, \hyperpage{28}
+    \subitem {storage\_\discretionary {-}{}{}auth}, \hyperpage{31}
+    \subitem {storage\_\discretionary {-}{}{}connect}, \hyperpage{32}
+    \subitem {storage\_\discretionary {-}{}{}disconnect}, 
+		\hyperpage{32}
+    \subitem {storage\_\discretionary {-}{}{}get}, \hyperpage{33}
+    \subitem {storage\_\discretionary {-}{}{}query}, \hyperpage{34}
+    \subitem {storage\_\discretionary {-}{}{}set}, \hyperpage{35}
+  \item {storage\_\discretionary {-}{}{}auth}
+    \subitem {storage.c}, \hyperpage{25}
+    \subitem {storage.h}, \hyperpage{31}
+  \item {storage\_\discretionary {-}{}{}connect}
+    \subitem {storage.c}, \hyperpage{25}
+    \subitem {storage.h}, \hyperpage{32}
+  \item {storage\_\discretionary {-}{}{}disconnect}
+    \subitem {storage.c}, \hyperpage{25}
+    \subitem {storage.h}, \hyperpage{32}
+  \item {storage\_\discretionary {-}{}{}get}
+    \subitem {storage.c}, \hyperpage{26}
+    \subitem {storage.h}, \hyperpage{33}
+  \item {storage\_\discretionary {-}{}{}query}
+    \subitem {storage.c}, \hyperpage{26}
+    \subitem {storage.h}, \hyperpage{34}
+  \item {storage\_\discretionary {-}{}{}record}, \hyperpage{7}
+  \item {storage\_\discretionary {-}{}{}set}
+    \subitem {storage.c}, \hyperpage{27}
+    \subitem {storage.h}, \hyperpage{35}
+
+  \indexspace
+
+  \item {table}, \hyperpage{7}
+  \item {table\_\discretionary {-}{}{}info}, \hyperpage{8}
+  \item {table\_\discretionary {-}{}{}query}
+    \subitem {server.c}, \hyperpage{22}
+  \item {tablecheck}
+    \subitem {storage.c}, \hyperpage{27}
+  \item {temp\_\discretionary {-}{}{}table\_\discretionary {-}{}{}info}, 
+		\hyperpage{8}
+
+  \indexspace
+
+  \item {utils.c}, \hyperpage{36}
+    \subitem {generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password}, 
+		\hyperpage{37}
+    \subitem {logger}, \hyperpage{37}
+    \subitem {process\_\discretionary {-}{}{}config\_\discretionary {-}{}{}line}, 
+		\hyperpage{37}
+    \subitem {read\_\discretionary {-}{}{}config}, \hyperpage{38}
+    \subitem {recvline}, \hyperpage{38}
+    \subitem {sendall}, \hyperpage{39}
+  \item {utils.h}, \hyperpage{39}
+    \subitem {DBG}, \hyperpage{41}
+    \subitem {generate\_\discretionary {-}{}{}encrypted\_\discretionary {-}{}{}password}, 
+		\hyperpage{41}
+    \subitem {LOG}, \hyperpage{41}
+    \subitem {logger}, \hyperpage{41}
+    \subitem {read\_\discretionary {-}{}{}config}, \hyperpage{42}
+    \subitem {recvline}, \hyperpage{42}
+    \subitem {sendall}, \hyperpage{43}
+
+  \indexspace
+
+  \item {valuecheck}
+    \subitem {storage.c}, \hyperpage{28}
+
+\end{theindex}

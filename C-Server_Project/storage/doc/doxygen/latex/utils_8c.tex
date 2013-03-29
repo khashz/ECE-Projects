@@ -1,0 +1,223 @@
+\hypertarget{utils_8c}{
+\section{utils.c File Reference}
+\label{utils_8c}\index{utils.c@{utils.c}}
+}
+
+
+This file implements various utility functions that can be used by the storage server and client library.  
+
+
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$string.h$>$}\par
+{\ttfamily \#include $<$sys/types.h$>$}\par
+{\ttfamily \#include $<$sys/socket.h$>$}\par
+{\ttfamily \#include $<$unistd.h$>$}\par
+{\ttfamily \#include \char`\"{}utils.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}loghelp.h\char`\"{}}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{utils_8c_a73c4a410d877b6a9358c547786f2102c}{sendall} (const int sock, const char $\ast$buf, const size\_\-t len)
+\begin{DoxyCompactList}\small\item\em Keep sending the contents of the buffer until complete. \item\end{DoxyCompactList}\item 
+int \hyperlink{utils_8c_ab126c8228ad72abbaed5f282709446ab}{recvline} (const int sock, char $\ast$buf, const size\_\-t buflen)
+\begin{DoxyCompactList}\small\item\em Receive an entire line from a socket. \item\end{DoxyCompactList}\item 
+int \hyperlink{utils_8c_adff314282f20b36183c32bcec38799eb}{process\_\-config\_\-line} (char $\ast$line, struct \hyperlink{structconfig__params}{config\_\-params} $\ast$params, int $\ast$host, int $\ast$port, int $\ast$user, int $\ast$pass)
+\begin{DoxyCompactList}\small\item\em takes a line passed in from the read configuration function and stores it in the appropriate structs \item\end{DoxyCompactList}\item 
+int \hyperlink{utils_8c_ae885a5871d260ab51ce6a9156f41f07e}{read\_\-config} (const char $\ast$config\_\-file, struct \hyperlink{structconfig__params}{config\_\-params} $\ast$params)
+\begin{DoxyCompactList}\small\item\em opens and reads the entire config file, parsing and storing them to structs used in other files \item\end{DoxyCompactList}\item 
+void \hyperlink{utils_8c_a9e4d8cb085fc7d5c9093ee102fa886d1}{logger} (FILE $\ast$file, char $\ast$message)
+\begin{DoxyCompactList}\small\item\em either writes to stdout, a file or does nothing according to the LOGGING constant set in the \hyperlink{loghelp_8h}{loghelp.h} file \item\end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{utils_8c_aa26d27a9072e93c052cb0c7fca7909f7}{generate\_\-encrypted\_\-password} (const char $\ast$passwd, const char $\ast$salt)
+\begin{DoxyCompactList}\small\item\em Generates an encrypted password string using salt CRYPT\_\-SALT. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file implements various utility functions that can be used by the storage server and client library. 
+
+Definition in file \hyperlink{utils_8c_source}{utils.c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{utils_8c_aa26d27a9072e93c052cb0c7fca7909f7}{
+\index{utils.c@{utils.c}!generate\_\-encrypted\_\-password@{generate\_\-encrypted\_\-password}}
+\index{generate\_\-encrypted\_\-password@{generate\_\-encrypted\_\-password}!utils.c@{utils.c}}
+\subsubsection[{generate\_\-encrypted\_\-password}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ generate\_\-encrypted\_\-password (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ passwd, }
+\item[{const char $\ast$}]{ salt}
+\end{DoxyParamCaption}
+)}}
+\label{utils_8c_aa26d27a9072e93c052cb0c7fca7909f7}
+
+
+Generates an encrypted password string using salt CRYPT\_\-SALT. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em passwd}]Password before encryption. \item[{\em salt}]Salt used to encrypt the password. If NULL default value DEFAULT\_\-CRYPT\_\-SALT is used. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns encrypted password. 
+\end{DoxyReturn}
+
+
+Definition at line 291 of file utils.c.
+
+
+
+References DEFAULT\_\-CRYPT\_\-SALT.
+
+
+
+Referenced by storage\_\-auth().
+
+\hypertarget{utils_8c_a9e4d8cb085fc7d5c9093ee102fa886d1}{
+\index{utils.c@{utils.c}!logger@{logger}}
+\index{logger@{logger}!utils.c@{utils.c}}
+\subsubsection[{logger}]{\setlength{\rightskip}{0pt plus 5cm}void logger (
+\begin{DoxyParamCaption}
+\item[{FILE $\ast$}]{ file, }
+\item[{char $\ast$}]{ message}
+\end{DoxyParamCaption}
+)}}
+\label{utils_8c_a9e4d8cb085fc7d5c9093ee102fa886d1}
+
+
+either writes to stdout, a file or does nothing according to the LOGGING constant set in the \hyperlink{loghelp_8h}{loghelp.h} file 
+
+Generates a log message.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em file}]is a pointer to the file created to log to \item[{\em message}]is what we want to write to either the file, stdout or \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file utils.c.
+
+
+
+Referenced by handle\_\-command(), main(), and storage\_\-connect().
+
+\hypertarget{utils_8c_adff314282f20b36183c32bcec38799eb}{
+\index{utils.c@{utils.c}!process\_\-config\_\-line@{process\_\-config\_\-line}}
+\index{process\_\-config\_\-line@{process\_\-config\_\-line}!utils.c@{utils.c}}
+\subsubsection[{process\_\-config\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}int process\_\-config\_\-line (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ line, }
+\item[{struct {\bf config\_\-params} $\ast$}]{ params, }
+\item[{int $\ast$}]{ host, }
+\item[{int $\ast$}]{ port, }
+\item[{int $\ast$}]{ user, }
+\item[{int $\ast$}]{ pass}
+\end{DoxyParamCaption}
+)}}
+\label{utils_8c_adff314282f20b36183c32bcec38799eb}
+
+
+takes a line passed in from the read configuration function and stores it in the appropriate structs 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em line}]is each line inside the config file \item[{\em params}]is the struct that will hold the entire config file... split into arrays \item[{\em host}]is the counter used through each function call -\/used for error checking \item[{\em port}]is the counter used through each function call -\/used for error checking \item[{\em user}]is the counter used through each function call -\/used for error checking \item[{\em pass}]is the counter used through each function call -\/used for error checking \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for success, -\/1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 77 of file utils.c.
+
+
+
+References MAX\_\-TABLE\_\-LEN, config\_\-params::password, config\_\-params::server\_\-host, config\_\-params::server\_\-port, and config\_\-params::username.
+
+
+
+Referenced by read\_\-config().
+
+\hypertarget{utils_8c_ae885a5871d260ab51ce6a9156f41f07e}{
+\index{utils.c@{utils.c}!read\_\-config@{read\_\-config}}
+\index{read\_\-config@{read\_\-config}!utils.c@{utils.c}}
+\subsubsection[{read\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}int read\_\-config (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ config\_\-file, }
+\item[{struct {\bf config\_\-params} $\ast$}]{ params}
+\end{DoxyParamCaption}
+)}}
+\label{utils_8c_ae885a5871d260ab51ce6a9156f41f07e}
+
+
+opens and reads the entire config file, parsing and storing them to structs used in other files 
+
+Read and load configuration parameters.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em config\_\-file}]is the name of the config file being parsed \item[{\em params}]is a structure that holds everything inside the configuration file \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for success, -\/1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 234 of file utils.c.
+
+
+
+References process\_\-config\_\-line().
+
+
+
+Referenced by main().
+
+\hypertarget{utils_8c_ab126c8228ad72abbaed5f282709446ab}{
+\index{utils.c@{utils.c}!recvline@{recvline}}
+\index{recvline@{recvline}!utils.c@{utils.c}}
+\subsubsection[{recvline}]{\setlength{\rightskip}{0pt plus 5cm}int recvline (
+\begin{DoxyParamCaption}
+\item[{const int}]{ sock, }
+\item[{char $\ast$}]{ buf, }
+\item[{const size\_\-t}]{ buflen}
+\end{DoxyParamCaption}
+)}}
+\label{utils_8c_ab126c8228ad72abbaed5f282709446ab}
+
+
+Receive an entire line from a socket. 
+
+In order to avoid reading more than a line from the stream, this function only reads one byte at a time. This is very inefficient, and you are free to optimize it or implement your own function. 
+
+Definition at line 39 of file utils.c.
+
+
+
+Referenced by main(), storage\_\-auth(), storage\_\-get(), storage\_\-query(), and storage\_\-set().
+
+\hypertarget{utils_8c_a73c4a410d877b6a9358c547786f2102c}{
+\index{utils.c@{utils.c}!sendall@{sendall}}
+\index{sendall@{sendall}!utils.c@{utils.c}}
+\subsubsection[{sendall}]{\setlength{\rightskip}{0pt plus 5cm}int sendall (
+\begin{DoxyParamCaption}
+\item[{const int}]{ sock, }
+\item[{const char $\ast$}]{ buf, }
+\item[{const size\_\-t}]{ len}
+\end{DoxyParamCaption}
+)}}
+\label{utils_8c_a73c4a410d877b6a9358c547786f2102c}
+
+
+Keep sending the contents of the buffer until complete. 
+
+\begin{DoxyReturn}{Returns}
+Return 0 on success, -\/1 otherwise.
+\end{DoxyReturn}
+The parameters mimic the send() function. 
+
+Definition at line 19 of file utils.c.
+
+
+
+Referenced by handle\_\-command(), storage\_\-auth(), storage\_\-get(), storage\_\-query(), and storage\_\-set().
+

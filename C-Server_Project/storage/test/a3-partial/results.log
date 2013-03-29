@@ -1,0 +1,27 @@
+Running suite a3-partial
+main.c:497:P:sanity:test_sanity_filemod:0: Passed
+main.c:512:P:configerror:test_configerror_nocomma:0: Passed
+main.c:519:P:configerror:test_configerror_negsize:0: Passed
+main.c:537:P:config:test_config_onetable:0: Passed
+main.c:559:P:conn:test_conn_basic:0: Passed
+main.c:568:P:conninvalid:test_conninvalid_connectinvalidparam:0: Passed
+main.c:588:P:getinvalid:test_getinvalid_badtable:0: Passed
+main.c:598:P:getmissing:test_getmissing_missingtable:0: Passed
+main.c:616:P:setinvalid:test_setinvalid_invalidtable:0: Passed
+main.c:630:P:setinvalid:test_setinvalid_badkey:0: Passed
+main.c:651:P:setinvalidcomplex:test_setinvalidcomplex_missingcolumn:0: Passed
+main.c:641:P:setmissing:test_setmissing_missingtable:0: Passed
+main.c:679:P:setget:test_setget_posint:0: Passed
+main.c:697:P:query:test_query_int0:0: Passed
+main.c:706:F:query:test_query_int1:0: Query didn't find the correct number of keys.
+main.c:767:P:set:test_set_deleteint:0: Passed
+main.c:782:P:set:test_set_deletestr:0: Passed
+main.c:823:P:setcomplex:test_setcomplex_deletethreecols:0: Passed
+main.c:849:P:setcomplex:test_setcomplex_updatethreecols:0: Passed
+main.c:369:P:storage_query tests:test_query_check_return:0: Passed
+main.c:283:P:Storage_get cases:test_get:0: Passed
+main.c:254:F:Storage_set ADDING A REC:test_set_add:0: Should Fail, invalid parameter
+main.c:311:P:Storage_set MODIFY AND STRCMP:test_setModify:0: Passed
+main.c:332:P:Storage_set deleting a record:test_setDelete:0: Passed
+Results for all suites run:
+91%: Checks: 24, Failures: 2, Errors: 0

@@ -1,0 +1,321 @@
+\hypertarget{storage_8c}{
+\section{storage.c File Reference}
+\label{storage_8c}\index{storage.c@{storage.c}}
+}
+
+
+This file contains the implementation of the storage server interface as specified in \hyperlink{storage_8h}{storage.h}.  
+
+
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$unistd.h$>$}\par
+{\ttfamily \#include $<$string.h$>$}\par
+{\ttfamily \#include $<$sys/types.h$>$}\par
+{\ttfamily \#include $<$sys/socket.h$>$}\par
+{\ttfamily \#include $<$netdb.h$>$}\par
+{\ttfamily \#include \char`\"{}storage.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}utils.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}loghelp.h\char`\"{}}\par
+{\ttfamily \#include $<$errno.h$>$}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{storage_8c_a552b38fb2ae59f225a6e74f8ddc65726}{tablecheck} (char $\ast$string)
+\begin{DoxyCompactList}\small\item\em receives a string and checks whether it's valid. Standard given according to the M2 document \item\end{DoxyCompactList}\item 
+int \hyperlink{storage_8c_ab500e741d272ac8e340066907cdb09bc}{keycheck} (char $\ast$string)
+\begin{DoxyCompactList}\small\item\em receives a string and checks whether it's valid. Standard given according to the M2 document \item\end{DoxyCompactList}\item 
+int \hyperlink{storage_8c_abb6d19cdba10e16ce04f485bd1978181}{valuecheck} (char $\ast$string)
+\begin{DoxyCompactList}\small\item\em receives a string and checks whether it's valid. Standard given according to the M2 document \item\end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{storage_8c_abc3751ffba629aad5a4b8c7c22a75e11}{storage\_\-connect} (const char $\ast$hostname, const int port)
+\begin{DoxyCompactList}\small\item\em performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will be conencted with our server \item\end{DoxyCompactList}\item 
+int \hyperlink{storage_8c_aa97b5545b3eefb5055a4e6febd375796}{storage\_\-auth} (const char $\ast$username, const char $\ast$passwd, void $\ast$conn)
+\begin{DoxyCompactList}\small\item\em performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will be authenticated with the server \item\end{DoxyCompactList}\item 
+int \hyperlink{storage_8c_ac75689ee50898a2f6580c6489e886b59}{storage\_\-get} (const char $\ast$\hyperlink{structtable}{table}, const char $\ast$\hyperlink{structkey}{key}, struct \hyperlink{structstorage__record}{storage\_\-record} $\ast$record, void $\ast$conn)
+\begin{DoxyCompactList}\small\item\em performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will have the values found inside the table \item\end{DoxyCompactList}\item 
+int \hyperlink{storage_8c_a8a42f72670cdcd7bf83416df1f1b090d}{storage\_\-set} (const char $\ast$\hyperlink{structtable}{table}, const char $\ast$\hyperlink{structkey}{key}, struct \hyperlink{structstorage__record}{storage\_\-record} $\ast$record, void $\ast$conn)
+\begin{DoxyCompactList}\small\item\em performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will have set a key along with its values inside the database \item\end{DoxyCompactList}\item 
+int \hyperlink{storage_8c_af4e09b41d2bc5b8c25936fe952e748b2}{storage\_\-query} (const char $\ast$\hyperlink{structtable}{table}, const char $\ast$predicates, char $\ast$$\ast$keys, const int max\_\-keys, void $\ast$conn)
+\begin{DoxyCompactList}\small\item\em performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will have all of the keys that pass the operations inside predicates \item\end{DoxyCompactList}\item 
+int \hyperlink{storage_8c_acd449536193542befbae2ff5e916f657}{storage\_\-disconnect} (void $\ast$conn)
+\begin{DoxyCompactList}\small\item\em performs a basic error check and after everything has passed, disconnects from the server \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{storage_8c_ad46642d0a23251a68d352e749ab6ac20}{
+int {\bfseries didConnect}}
+\label{storage_8c_ad46642d0a23251a68d352e749ab6ac20}
+
+\item 
+\hypertarget{storage_8c_a5ce736b5d74d8a2a656fee96d7bd0735}{
+int {\bfseries didAuthenticate}}
+\label{storage_8c_a5ce736b5d74d8a2a656fee96d7bd0735}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains the implementation of the storage server interface as specified in \hyperlink{storage_8h}{storage.h}. performs all of the sending and receiving with the server, also performs a standard error check on the commands given from client 
+
+Definition in file \hyperlink{storage_8c_source}{storage.c}.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{storage_8c_ab500e741d272ac8e340066907cdb09bc}{
+\index{storage.c@{storage.c}!keycheck@{keycheck}}
+\index{keycheck@{keycheck}!storage.c@{storage.c}}
+\subsubsection[{keycheck}]{\setlength{\rightskip}{0pt plus 5cm}int keycheck (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ string}
+\end{DoxyParamCaption}
+)}}
+\label{storage_8c_ab500e741d272ac8e340066907cdb09bc}
+
+
+receives a string and checks whether it's valid. Standard given according to the M2 document 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em string}]is what we want to make sure is a valid key type \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return 0 for success, 1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 49 of file storage.c.
+
+
+
+Referenced by storage\_\-get(), and storage\_\-set().
+
+\hypertarget{storage_8c_aa97b5545b3eefb5055a4e6febd375796}{
+\index{storage.c@{storage.c}!storage\_\-auth@{storage\_\-auth}}
+\index{storage\_\-auth@{storage\_\-auth}!storage.c@{storage.c}}
+\subsubsection[{storage\_\-auth}]{\setlength{\rightskip}{0pt plus 5cm}int storage\_\-auth (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ username, }
+\item[{const char $\ast$}]{ passwd, }
+\item[{void $\ast$}]{ conn}
+\end{DoxyParamCaption}
+)}}
+\label{storage_8c_aa97b5545b3eefb5055a4e6febd375796}
+
+
+performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will be authenticated with the server 
+
+Authenticate the client's connection to the server.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em username}]the name of our server we want to join \item[{\em passwd}]the password for the server network \item[{\em conn}]a pointer to the connection status of the server \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return 0 for success, -\/1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 139 of file storage.c.
+
+
+
+References generate\_\-encrypted\_\-password(), recvline(), and sendall().
+
+\hypertarget{storage_8c_abc3751ffba629aad5a4b8c7c22a75e11}{
+\index{storage.c@{storage.c}!storage\_\-connect@{storage\_\-connect}}
+\index{storage\_\-connect@{storage\_\-connect}!storage.c@{storage.c}}
+\subsubsection[{storage\_\-connect}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ storage\_\-connect (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ hostname, }
+\item[{const int}]{ port}
+\end{DoxyParamCaption}
+)}}
+\label{storage_8c_abc3751ffba629aad5a4b8c7c22a75e11}
+
+
+performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will be conencted with our server 
+
+Establish a connection to the server.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em hostname}]is the name of the host we want to connect with \item[{\em port}]is the port number we want to connect with \item[{\em return}]0 for success, -\/1 for failure \end{DoxyParams}
+
+
+Definition at line 88 of file storage.c.
+
+
+
+References logger().
+
+\hypertarget{storage_8c_acd449536193542befbae2ff5e916f657}{
+\index{storage.c@{storage.c}!storage\_\-disconnect@{storage\_\-disconnect}}
+\index{storage\_\-disconnect@{storage\_\-disconnect}!storage.c@{storage.c}}
+\subsubsection[{storage\_\-disconnect}]{\setlength{\rightskip}{0pt plus 5cm}int storage\_\-disconnect (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{ conn}
+\end{DoxyParamCaption}
+)}}
+\label{storage_8c_acd449536193542befbae2ff5e916f657}
+
+
+performs a basic error check and after everything has passed, disconnects from the server 
+
+Close the connection to the server.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em conn}]a pointer to the connection status of the server \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return 0 for success, -\/1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 368 of file storage.c.
+
+\hypertarget{storage_8c_ac75689ee50898a2f6580c6489e886b59}{
+\index{storage.c@{storage.c}!storage\_\-get@{storage\_\-get}}
+\index{storage\_\-get@{storage\_\-get}!storage.c@{storage.c}}
+\subsubsection[{storage\_\-get}]{\setlength{\rightskip}{0pt plus 5cm}int storage\_\-get (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ table, }
+\item[{const char $\ast$}]{ key, }
+\item[{struct {\bf storage\_\-record} $\ast$}]{ record, }
+\item[{void $\ast$}]{ conn}
+\end{DoxyParamCaption}
+)}}
+\label{storage_8c_ac75689ee50898a2f6580c6489e886b59}
+
+
+performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will have the values found inside the table 
+
+Retrieve the value associated with a key in a table.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em table}]name of the table we want to get from \item[{\em key}]name of the key \item[{\em record}]is the struct holding the configuration parameters of everything inside the configuration file \item[{\em conn}]a pointer to the connection status of the server \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return 0 for success, -\/1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file storage.c.
+
+
+
+References keycheck(), recvline(), sendall(), tablecheck(), and storage\_\-record::value.
+
+\hypertarget{storage_8c_af4e09b41d2bc5b8c25936fe952e748b2}{
+\index{storage.c@{storage.c}!storage\_\-query@{storage\_\-query}}
+\index{storage\_\-query@{storage\_\-query}!storage.c@{storage.c}}
+\subsubsection[{storage\_\-query}]{\setlength{\rightskip}{0pt plus 5cm}int storage\_\-query (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ table, }
+\item[{const char $\ast$}]{ predicates, }
+\item[{char $\ast$$\ast$}]{ keys, }
+\item[{const int}]{ max\_\-keys, }
+\item[{void $\ast$}]{ conn}
+\end{DoxyParamCaption}
+)}}
+\label{storage_8c_af4e09b41d2bc5b8c25936fe952e748b2}
+
+
+performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will have all of the keys that pass the operations inside predicates 
+
+Query the table for records, and retrieve the matching keys.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em table}]name of the table we want to query from \item[{\em key}]a member address of the pointer for the string of keys \item[{\em max\_\-keys}]is the max number of keys storage query is supposed to return \item[{\em conn}]a pointer to the connection status of the server \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return 0 for success, -\/1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 302 of file storage.c.
+
+
+
+References recvline(), sendall(), and tablecheck().
+
+\hypertarget{storage_8c_a8a42f72670cdcd7bf83416df1f1b090d}{
+\index{storage.c@{storage.c}!storage\_\-set@{storage\_\-set}}
+\index{storage\_\-set@{storage\_\-set}!storage.c@{storage.c}}
+\subsubsection[{storage\_\-set}]{\setlength{\rightskip}{0pt plus 5cm}int storage\_\-set (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ table, }
+\item[{const char $\ast$}]{ key, }
+\item[{struct {\bf storage\_\-record} $\ast$}]{ record, }
+\item[{void $\ast$}]{ conn}
+\end{DoxyParamCaption}
+)}}
+\label{storage_8c_a8a42f72670cdcd7bf83416df1f1b090d}
+
+
+performs a basic error check and after everything has passed, passes the information onto server via sendall after the execution of this function, we will have set a key along with its values inside the database 
+
+Store a key/value pair in a table.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em table}]name of the table we want to set to \item[{\em key}]name of the key we want to set \item[{\em record}]is the struct holding the configuration parameters of everything inside the configuration file \item[{\em conn}]a pointer to the connection status of the server \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return 0 for success, -\/1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 234 of file storage.c.
+
+
+
+References keycheck(), recvline(), sendall(), tablecheck(), and storage\_\-record::value.
+
+\hypertarget{storage_8c_a552b38fb2ae59f225a6e74f8ddc65726}{
+\index{storage.c@{storage.c}!tablecheck@{tablecheck}}
+\index{tablecheck@{tablecheck}!storage.c@{storage.c}}
+\subsubsection[{tablecheck}]{\setlength{\rightskip}{0pt plus 5cm}int tablecheck (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ string}
+\end{DoxyParamCaption}
+)}}
+\label{storage_8c_a552b38fb2ae59f225a6e74f8ddc65726}
+
+
+receives a string and checks whether it's valid. Standard given according to the M2 document 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em string,string}]to perform error check on \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return 0 for success, 1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 32 of file storage.c.
+
+
+
+Referenced by storage\_\-get(), storage\_\-query(), and storage\_\-set().
+
+\hypertarget{storage_8c_abb6d19cdba10e16ce04f485bd1978181}{
+\index{storage.c@{storage.c}!valuecheck@{valuecheck}}
+\index{valuecheck@{valuecheck}!storage.c@{storage.c}}
+\subsubsection[{valuecheck}]{\setlength{\rightskip}{0pt plus 5cm}int valuecheck (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{ string}
+\end{DoxyParamCaption}
+)}}
+\label{storage_8c_abb6d19cdba10e16ce04f485bd1978181}
+
+
+receives a string and checks whether it's valid. Standard given according to the M2 document 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em string}]is what we want to make sure is a valid value type \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+return 0 for success, 1 for failure 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file storage.c.
+

@@ -1,0 +1,323 @@
+/**
+ * 		CLIENT.C 
+ * The client connects to the server, running at SERVERHOST:SERVERPORT
+ * and performs a number of storage_* operations. If there are errors,
+ * the client exists.
+ */
+
+#include <errno.h>
+#include <time.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <sys/time.h>
+#include "storage.h"
+#include "storage.c"
+
+//#define SERVERHOST "localhost"
+//#define SERVERPORT 1111
+//#define SERVERUSERNAME "admin"
+//#define SERVERPASSWORD "dog4sale"
+//#define TABLE "marks"
+//#define KEY "ece297"
+
+
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+#include "storage.h"
+#include <time.h>
+#include "utils.h"
+
+
+void printmenu(int* i);
+
+int main(int argc, char *argv[])
+{
+	// initial variables used throughout all of the commands
+	int i;
+	int SERVERPORT;
+	char SERVERHOST[MAX_HOST_LEN], SERVERUSERNAME[MAX_USERNAME_LEN], SERVERPASSWORD[MAX_ENC_PASSWORD_LEN], SERVERPORTstr[MAX_PORT_LEN];
+	char TABLE[MAX_TABLE_LEN], KEY[MAX_KEY_LEN];
+	char **key = malloc(sizeof(char**)*800);
+	char PREDICATES_1[500];
+	char PREDICATES[500];
+	void *conn = NULL;
+	int status;
+	struct storage_record r;
+	int authenticated = 0;
+
+	do{
+		printmenu(&i); // function to prompt the user for the menu and read in and update the variable i
+
+		if(i == 0){// Connect to server
+			if(conn != NULL)
+				printf("You are already connected. Please choose another option.\n\n");
+			else
+			{
+<<<<<<< .mine
+				conn = storage_connect("localhost",2232);
+=======
+				conn = storage_connect("localhost",2222);
+>>>>>>> .r18
+				if(!conn)
+				{
+					printf("Cannot connect to server @ %s:%d. Error code: %d.\n", SERVERHOST, SERVERPORT, errno);
+					//return -1;
+				}
+				else printf("\nUser conncected with the server\n");
+				status = storage_auth("admin", "dog4sale", conn);
+				if(status != 0)
+				{
+					printf("storage_auth failed with username '%s' and password '%s'. " \
+					"Error code: %d, status: %d\n", SERVERUSERNAME, SERVERPASSWORD, errno, status);
+					//storage_disconnect(conn);
+					//return status;
+				}
+				else{
+					authenticated = 1;
+					printf("\nUser authenticated with the server\n");
+				}
+			}
+		}
+		if(i == 1)
+		{// Connect to server
+			if(conn != NULL)
+				printf("You are already connected. Please choose another option.\n\n");
+			else
+			{
+				printf("Enter the Server Host\n");
+				fgets(SERVERHOST, MAX_HOST_LEN, stdin);
+				sscanf(SERVERHOST, "%s", SERVERHOST);
+				printf("Enter the Server Port\n");
+				fgets(SERVERPORTstr, MAX_PORT_LEN, stdin);
+				sscanf(SERVERPORTstr, "%d", &SERVERPORT);
+				conn = storage_connect(SERVERHOST, SERVERPORT);
+				if(!conn)
+				{
+					printf("Cannot connect to server @ %s:%d. Error code: %d.\n", SERVERHOST, SERVERPORT, errno);
+					//return -1;
+				}
+<<<<<<< .mine
+				else printf("\nUser conncected with the server\n");
+=======
+				else printf("\nUser connected with the server\n");
+>>>>>>> .r18
+			}
+		}
+
+		else if(i == 2)
+		{// Authenticate the client.
+			if(conn == NULL)
+				printf("You are not connected yet. Please connect to the server first.\n\n");
+			//else if(authenticated == 1)
+				//printf("You are already authenticated. Please choose another option.\n\n");
+			else
+			{
+				printf("Enter the UserName Host\n");
+				fgets(SERVERUSERNAME, MAX_USERNAME_LEN, stdin);
+				sscanf(SERVERUSERNAME, "%s", SERVERUSERNAME);
+				printf("Enter the Password Host\n");
+				fgets(SERVERPASSWORD, MAX_ENC_PASSWORD_LEN, stdin);
+				sscanf(SERVERPASSWORD, "%s", SERVERPASSWORD);
+				status = storage_auth(SERVERUSERNAME, SERVERPASSWORD, conn);
+				if(status != 0)
+				{
+					printf("storage_auth failed with username '%s' and password '%s'. " \
+							"Error code: %d, status: %d\n", SERVERUSERNAME, SERVERPASSWORD, errno, status);
+				}
+				else{
+					authenticated = 1;
+					printf("\nUser authenticated with the server\n");
+				}
+			}
+		}
+
+		else if(i == 3)
+		{// SET command
+			if(conn == NULL)
+				printf("You are not connected yet. Please connect to the server first.\n\n");
+			else
+			{
+				printf("Please enter the Table\n");
+				fgets(TABLE, MAX_TABLE_LEN, stdin);
+				sscanf(TABLE, "%s", TABLE);
+				printf("Please enter the Key\n");
+				fgets(KEY, MAX_KEY_LEN, stdin);
+				sscanf(KEY, "%s", KEY);
+				printf("Please Enter the record that you wish to store\n");
+				fgets(r.value, MAX_VALUE_LEN, stdin);
+				r.value[strlen(r.value)-1] = '\0';
+				//strncpy(r.value, value, sizeof value);
+
+				//This is for measuring the server processing time
+				//remember when the process started
+				clock_t t;
+				t=clock();
+				//issue set call to DATABASE with TABLE, KEY and r.value
+				if(!strcmp(r.value,"null")){
+					status = storage_set(TABLE,KEY,NULL,conn);
+				}
+				if(strcmp(r.value,"null"))
+				status = storage_set(TABLE, KEY, &r, conn);
+				//find how long it took to perform the GET operation
+				//current time minus the time when the operation started
+				t=clock()-t;
+
+				if(status != 0)
+				{
+					printf("storage_set failed. Error code: %d.\n", errno);
+				}
+<<<<<<< .mine
+				//else
+					printf("storage_set: successful.\n");
+=======
+				else
+					printf("storage_set: successful.\n");
+>>>>>>> .r18
+			}
+		}
+
+		else if(i == 4)
+		{// GET command
+			if(conn == NULL)
+				printf("You are not connected yet. Please connect to the server first.\n\n");
+			//else if(authenticated == 0)
+				//printf("You are not authenticated yet. Please authenticate first.\n\n");
+			else
+			{
+				printf("Please enter the Table\n");
+				fgets(TABLE, MAX_TABLE_LEN, stdin);
+				sscanf(TABLE, "%s", TABLE);
+				printf("Please enter the Key\n");
+				fgets(KEY, MAX_KEY_LEN, stdin);
+				sscanf(KEY, "%s", KEY);
+				status = storage_get(TABLE, KEY, &r, conn);
+				if(status != 0)
+				{
+					printf("storage_get failed. Error code: %d.\n", errno);
+					storage_disconnect(conn);
+					return status;
+				}
+				else
+					printf("storage_get: the value returned for key '%s' is '%s'.\n", KEY, r.value);
+			}
+		}
+
+		else if(i == 5)
+		{// QUERY command
+			if(conn == NULL)
+				printf("You are not connected yet. Please connect to the server first.\n\n");
+			else
+			{
+				printf("Please enter the Table\n");
+				fgets(TABLE, MAX_TABLE_LEN, stdin);
+				sscanf(TABLE, "%s", TABLE);
+
+				printf("Please enter the Predicates\n");
+				fgets(PREDICATES_1, 500, stdin);
+				sscanf(PREDICATES_1, "%[^'\n]",PREDICATES);
+				// (const char *table, const char *predicates, char **keys, const int max_keys, void *conn)
+				status = storage_query(TABLE, PREDICATES, key, &r, conn);
+				//int foundkeys = storage_query(INTTABLE, "col<-1", test_keys, MAX_RECORDS_PER_TABLE, test_conn);
+				printf("status/number of keys: %d\n",status);
+				if(status == -1)
+				{
+					printf("storage_query failed. Error code: %d.\n", errno);
+					storage_disconnect(conn);
+					return status;
+				}
+				else {
+					int p = 0;
+
+					int i = 0;
+
+					while (key[i] != NULL){
+						printf("key: '%s'\n", key[i]);
+						i++;
+
+					}
+				}
+			}
+		}
+
+
+		else if(i==6)
+		{// Disconnect from server
+			status = storage_disconnect(conn);
+			if(status != 0)
+			{
+				printf("storage_disconnect failed. Error code: %d.\n", errno);
+				return status;
+			}
+			else
+			{
+				conn = NULL;
+				authenticated = 0;
+				printf("You are now disconnected\n");
+			}
+		}
+		else if (i==8){
+			// import the census into the data base
+			if(conn == NULL)
+				printf("You are not connected yet. Please connect to the server first.\n\n");
+			 FILE* fp;
+			fp=fopen("census", "r");               //open the file for reading only
+   			if(fp == NULL)
+   			 printf("Error opening file");
+  			 else
+   			{
+				int loop;
+       				//populate the table with all the data in the data file (city + its population)
+				do {
+					char name[100];
+					char value[MAX_VALUE_LEN];
+					char line[100];
+       					char *l = fgets(line, sizeof line, fp);
+					if (!feof(fp)){
+						sscanf(l, "%s %s", name, value);
+						printf("name: %s , value: %s \n", name, value);
+						strcpy(r.value,value);
+						status = storage_set("census", name, &r, conn);
+						if(status != 0)
+						{
+							printf("storage_set failed. Error code: %d.\n", errno);
+						}			
+					}
+					
+				   }
+       				 while(!feof(fp));     //read the first line (city)	
+   			}
+		}
+
+	} while (i!=7); // if i is 6, we want to exit from client
+
+	// Exit
+	return 0;
+}
+
+void printmenu(int* i)
+{
+	printf("\n\t\tMAIN MENU\n\nEnter 0 to auto connect and authenticate \nEnter 1 to Connect\nEnter 2 to Authenticate\nEnter 3 to Set\nEnter 4 to Get\nEnter 5 for Query\nEnter 6 to Disconnect\nEnter 7 to Exit\nEnter 8 To add in census\n--------------------------------------------\n\n");
+	printf("Please enter a command number: ");
+	int valid = 0;
+	char* str[100];
+
+	do{
+		fgets(str, 100, stdin); // read in 100 chars from one line
+		valid = sscanf(str, "%d", i);	// read in the integer into the variable i. Doing so also updates the i in main since we pass it in as a pointer reference
+		printf("\n");
+
+		if(!valid) 	// check whether the input was numerical or not
+			printf("Please enter a numerical value for the command: ");
+
+		else if((*i<0) || (*i>8))	// we also have to check whether the numerical input was one of the 7 options
+		{
+			printf("%d\n", *i);
+			printf("Please enter a value between 1 and 7: ");
+			valid = 0;
+		}
+
+	}while(!valid); // loops based on the validity of valid. If the prompt was one of the commands, valid stays 0 and continues our do while..
+}
+
