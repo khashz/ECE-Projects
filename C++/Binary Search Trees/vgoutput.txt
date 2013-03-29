@@ -1,0 +1,6 @@
+==4402== Memcheck, a memory error detector
+==4402== Copyright (C) 2002-2010, and GNU GPL'd, by Julian Seward et al.
+==4402== Using Valgrind-3.6.0 and LibVEX; rerun with -h for copyright info
+==4402== Command: /u/a/hossei50/ece244/lab5/dist/Debug/GNU-Linux-x86/lab5 | tee output.txt
+==4402== Parent PID: 4401
+==4402== 
